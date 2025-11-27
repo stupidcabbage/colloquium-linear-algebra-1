@@ -541,20 +541,17 @@
 \colquestion{Что такое координаты вектора?}
 
 \begin{answerbox}
-	Пусть $B = (v_1,\dots,v_n)$~--- базис пространства $V$. Тогда для любого вектора $v\in V$ существует единственное представление
+	Пусть $E = (e_1,\dots,e_n)$~--- базис пространства $V$. Тогда для любого вектора $v\in V$ существует единственное представление
 	\[
-		v = \alpha_1 v_1 + \dots + \alpha_n v_n,
+		v = \alpha_1 e_1 + \dots + \alpha_ne_n,
 	\]
-	где $\alpha_1,\dots,\alpha_n\in\mathbb{R}$. Числа $\alpha_1,\dots,\alpha_n$ называются \emph{координатами} вектора $v$ в базисе $B$, а столбец
+	где $\alpha_1,\dots,\alpha_n\in\mathbb{R}$. Числа $\alpha_1,\dots,\alpha_n$ называются \emph{координатами} вектора $v$ в базисе $E$ и принято это записывать в виде
 	\[
-		[v]_B =
-		\begin{pmatrix}
-			\alpha_1 \\ \vdots\\ \alpha_n
-		\end{pmatrix}
+		v_E = (\alpha_1,\dots,\alpha_n)^T
 	\]
-	называется координатным столбцом вектора $v$ в этом базисе.
+	У нулевого вектора $o$ координаты состоят из нулей.
 
-	\textit{Источник: \emph{Linear-Algebra}, лекция \#4, \S2.3.1, стр.\ 29--32.}
+	\textit{Источник: \emph{Linear-Algebra}, лекция \#4, \S2.3.1, стр.\ 30.}
 \end{answerbox}
 
 \bigskip
