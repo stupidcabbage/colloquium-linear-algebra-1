@@ -777,20 +777,213 @@
 \colquestion{Что такое бивектор? И как появляется детерминант матрицы $2\times 2$? И что происходит дальше? Объясните как появляется детерминант матрицы произвольного размера.}
 
 \begin{answerbox}
-	В двумерном пространстве ориентированную площадь параллелограмма, натянутого на векторы $\vec{a},\vec{b}$, удобно рассматривать как новый объект~--- \emph{бивектор} $\vec{a}\wedge\vec{b}$, обладающий свойствами антисимметрии и билинейности. В координатах на плоскости, если
+	\textbf{Определение 4.2.1.}
+	Мы будем считать две пары $(\vec{a}, \vec{b})$, $(\vec{a}\,', \vec{b}\,')$ векторов 
+	\emph{эквивалентными}, если для построенных на них параллелограммах выполняются условия:
+
+	\begin{enumerate}
+		\item Они имеют одинаковую площадь.
+		\item Направления вращения у них совпадают.
+	\end{enumerate}
+
+	Класс эквивалентности таких пар мы называем \emph{бивектором} и обозначаем так 
+	$\vec{a} \wedge \vec{b}$.
+
+	\bigskip
+
+	\textbf{Как появляется детерминант матрицы 2x2?}
+
+	\bigskip
+
+		Теперь мы хотим понять, как произвольный бивектор $\vec{a} \wedge \vec{b}$ связан 
+	с бивектором $\vec{e}_1 \wedge \vec{e}_2$, который построен на базисных векторах 
+	$\vec{e}_1 = (1,0)^{\mathsf{T}},\; \vec{e}_2 = (0,1)^{\mathsf{T}}$.
+
+	\begin{tcolorbox}[colback=green!5!white, colframe=green!40!black, title=Наблюдение 4.7]
+	Пусть векторы $\vec{a}$ и $\vec{b}$ выражены через векторы $\vec{e}_1$ и $\vec{e}_2$ следующим образом:
 	\[
-		\vec{a} = (a_1,a_2),\qquad \vec{b}=(b_1,b_2),
+	\vec{a} = a_1 \vec{e}_1 + a_2 \vec{e}_2,\qquad
+	\vec{b} = b_1 \vec{e}_1 + b_2 \vec{e}_2.
 	\]
-	то ориентированная площадь параллелограмма равна
+
+	Тогда, используя свойства операции $\wedge$, имеем:
 	\[
-		\det
-		\begin{pmatrix}
-			a_1 & b_1 \\
-			a_2 & b_2
-		\end{pmatrix}
-		= a_1 b_2 - a_2 b_1,
+	\vec{a} \wedge \vec{b} 
+	= (a_1 \vec{e}_1 + a_2 \vec{e}_2)\wedge (b_1 \vec{e}_1 + b_2 \vec{e}_2)
 	\]
-	и именно это выражение естественно возникает как коэффициент при фиксированном ``эталонном'' бивекторе. В размерности $3$ аналогично вводят тривектор $\vec{a}\wedge\vec{b}\wedge\vec{c}$, связанный с ориентированным объёмом параллелепипеда, а в общем $n$-мерном случае ориентированный $n$-объём $n$-мерного параллелепипеда порождает \emph{детерминант} матрицы, чьи столбцы~--- координаты векторов. Таким образом, детерминант произвольной квадратной матрицы определяется как единственная $n$-линейная кососимметрическая форма, принимающая значение $1$ на стандартном базисе.
+	\[
+	= a_1 b_1 (\vec{e}_1 \wedge \vec{e}_1)
+	+ a_1 b_2 (\vec{e}_1 \wedge \vec{e}_2)
+	+ a_2 b_1 (\vec{e}_2 \wedge \vec{e}_1)
+	+ a_2 b_2 (\vec{e}_2 \wedge \vec{e}_2).
+	\]
+
+	Так как $\vec{e}_1 \wedge \vec{e}_1 = \vec{e}_2 \wedge \vec{e}_2 = 0$ и 
+	$\vec{e}_2 \wedge \vec{e}_1 = -\,\vec{e}_1 \wedge \vec{e}_2$, то мы получаем:
+	\[
+	\vec{a} \wedge \vec{b} 
+	= (a_1 b_2 - a_2 b_1)(\vec{e}_1 \wedge \vec{e}_2).
+	\]
+	\end{tcolorbox}
+
+	\begin{tcolorbox}[colback=blue!5!white, colframe=blue!50!black, title=Важное замечание]
+	Выражение в скобках — это в точности детерминант матрицы коэффициентов:
+	\[
+	A = 
+	\begin{pmatrix}
+	a_1 & a_2 \\
+	b_1 & b_2
+	\end{pmatrix}.
+	\]
+
+	{\large \(\Rightarrow\)} Таким образом мы можем записать
+	\[
+	\vec{a} \wedge \vec{b} = \det(A)\cdot (\vec{e}_1 \wedge \vec{e}_2).
+	\]
+	\end{tcolorbox}
+
+	\bigskip
+
+	\textbf{Что происходит дальше?}
+
+	\bigskip
+
+		\begin{tcolorbox}[colback=green!5!white, colframe=green!40!black, title=Наблюдение 4.11]
+	Рассмотрим $n$-мерное векторное пространство с базисом 
+	$\{\vec{e}_1, \vec{e}_2, \dots, \vec{e}_n\}$. Аналогично предыдущим случаям:
+
+	\begin{itemize}
+		\item На прямой: $1$-вектор — направленный отрезок (1-мерный объём).
+		\item На плоскости: $2$-вектор — направленный параллелограмм (2-мерный объём).
+		\item В пространстве: $3$-вектор — направленный параллелепипед (3-мерный объём).
+		\item В $n$-мерном пространстве: $n$-вектор — направленный $n$-мерный параллелепипед ($n$-мерный объём).
+	\end{itemize}
+	\end{tcolorbox}
+
+	\bigskip
+
+	\textbf{Общая формула детерминанта n-мерной матрицы}
+
+	\bigskip
+
+\textbf{Определение 4.2.3.}
+Рассмотрим $n$ векторов в $n$-мерном пространстве:
+\[
+\vec{a}_1 = a_{11}\vec{e}_1 + a_{12}\vec{e}_2 + \cdots + a_{1n}\vec{e}_n,
+\]
+\[
+\vec{a}_2 = a_{21}\vec{e}_1 + a_{22}\vec{e}_2 + \cdots + a_{2n}\vec{e}_n,
+\]
+\[
+\vdots
+\]
+\[
+\vec{a}_n = a_{n1}\vec{e}_1 + a_{n2}\vec{e}_2 + \cdots + a_{nn}\vec{e}_n.
+\]
+
+Мы будем считать две системы векторов \emph{эквивалентными}, если для построенных на них
+$n$-мерных параллелепипедах выполняются условия:
+
+\begin{enumerate}
+    \item Они имеют одинаковый $n$-мерный объём.
+    \item Порядок векторов у них совпадает.
+\end{enumerate}
+
+Класс эквивалентности таких систем мы называем \emph{$n$-вектором} и обозначаем так
+\[
+\vec{a}_1 \wedge \vec{a}_2 \wedge \cdots \wedge \vec{a}_n.
+\]
+
+\textbf{Пример 4.12.}
+Вычислим внешнее произведение $n$ векторов:
+\[
+\vec{a}_1 \wedge \vec{a}_2 \wedge \cdots \wedge \vec{a}_n
+=
+(a_{11}\vec{e}_1 + \cdots + a_{1n}\vec{e}_n)\wedge
+(a_{21}\vec{e}_1 + \cdots + a_{2n}\vec{e}_n)\wedge
+\cdots\wedge
+(a_{n1}\vec{e}_1 + \cdots + a_{nn}\vec{e}_n).
+\]
+
+При раскрытии получим $n^n$ слагаемых вида:
+\[
+a_{1 i_1} a_{2 i_2}\cdots a_{n i_n} \,
+ (\vec{e}_{i_1}\wedge \vec{e}_{i_2}\wedge \cdots \wedge \vec{e}_{i_n}),
+\qquad
+i_1,i_2,\dots,i_n\in\{1,2,\dots,n\}.
+\]
+
+\begin{tcolorbox}[colback=blue!5!white,colframe=blue!60!black,title=Важное замечание]
+Если среди индексов $i_1,i_2,\dots,i_n$ есть повторения, то
+\[
+\vec{e}_{i_1}\wedge\vec{e}_{i_2}\wedge \cdots \wedge \vec{e}_{i_n}=0.
+\]
+Поэтому остаются только слагаемые, где $i_1,i_2,\dots,i_n$ — различные индексы,
+то есть перестановки множества $\{1,2,\dots,n\}$.
+
+Всего таких перестановок $n!$.
+\end{tcolorbox}
+
+Для каждой перестановки $\sigma\in S_n$ получаем слагаемое:
+\[
+a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}
+\,
+(\vec{e}_{\sigma(1)}\wedge\vec{e}_{\sigma(2)}\wedge \cdots \wedge \vec{e}_{\sigma(n)}).
+\]
+
+Упростим выражения с базисными векторами.  
+Для любой перестановки $\sigma$:
+\[
+\vec{e}_{\sigma(1)}\wedge\vec{e}_{\sigma(2)}\wedge\cdots\wedge\vec{e}_{\sigma(n)}
+=
+\operatorname{sign}(\sigma)\cdot(\vec{e}_1\wedge\vec{e}_2\wedge\cdots\wedge\vec{e}_n),
+\]
+где $\operatorname{sign}(\sigma)$ — знак перестановки $\sigma$.
+
+Подставим обратно:
+\[
+\vec{a}_1\wedge\vec{a}_2\wedge\cdots\wedge\vec{a}_n
+=
+\left(
+\sum_{\sigma\in S_n}
+\operatorname{sign}(\sigma)\,
+a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}
+\right)
+\cdot
+(\vec{e}_1\wedge\vec{e}_2\wedge\cdots\wedge\vec{e}_n).
+\]
+
+Сумма в скобках — это в точности определение детерминанта матрицы:
+\[
+A=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{pmatrix}.
+\]
+
+\begin{tcolorbox}[colback=red!5!white,colframe=red!60!black,title=Важное замечание]
+Таким образом, мы получаем фундаментальную формулу:
+\[
+\vec{a}_1\wedge\vec{a}_2\wedge\cdots\wedge\vec{a}_n
+=
+\det(A)\cdot (\vec{e}_1 \wedge \vec{e}_2 \wedge \cdots \wedge \vec{e}_n),
+\]
+где коэффициент пропорциональности бивектора $\vec{a}_1\wedge\cdots\wedge\vec{a}_n$
+к базисному бивектору $\vec{e}_1\wedge\vec{e}_2\wedge\cdots\wedge\vec{e}_n$
+называется \emph{детерминантом матрицы} $A$:
+\[
+\det(A)
+=
+\sum_{\sigma\in S_n}
+\operatorname{sign}(\sigma)\,
+a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}.
+\]
+\end{tcolorbox}
+
+
 
 	\textit{Источник: \emph{Linear-Algebra}, глава 4, \S4.2.1--4.2.5 ``Понятие бивектора, тривектора и $n$-векторов'', стр.\ 76--82.}
 \end{answerbox}
